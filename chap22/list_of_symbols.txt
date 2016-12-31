@@ -1,0 +1,73 @@
+"" - double quotes - to create string literal
+puts - command - to print string
+Atom - program - text editor
+ruby - program - interpreter
+# -*- coding: utf-8 -*- to fix any ASCII encoding error. to use Unicode TF-8
+# - octothorpe - used to write single line comment in ruby
+$ - command line prompt
++ - plus - to perform addition
+- - minus - to perform subtraction
+/ - slash - to perform division
+* - asterisk - to perform multiplication
+% - modulus - to get the reminder after division
+< - less-than - checks if left is less than right side
+> - greater-than - checks if left is greater than right side
+<= - less-than-equal - checks if left is less than or equal to right side
+>= - greater-than-equal - checks if left is greater than or equal to right side
+#{} - interpolation char - used inside "", the code inside {} is evaluated and result is displayed
+irb - interactive ruby shell - read-evaluate-print loop
+5,12 - integers - whole numbers
+5.5, 12.2 - floats - numbers with decimal
+PEMDAS - order of math operation - Paranthesis, exponent, (multiplication/division), (addition/subtracting)
+_ - underscore - used in place of space in naming
+= - equal - assignment operator
+true/false - boolean - objects belonging to True or False class
+print - does not introduce \n at the end
+FORMATTER
+-----------
+"%{first} %{second} %{third} %{fourth}" % {first: 1, second: 2, third: 3, fourth: 4}
+%{} - used to apply the same format to multiple values
+-----------
+%q == '' used to type multiline string
+\\ - escape backslash - to escape special characters like quotes, n, a
+"""...""" - triple quotes - can use "" double quotes inside without escaping
+\' - single quote
+\" - double quotes
+\a - ASCII bell - produces a bell sound
+\b - ASCII backspace
+\f - formfeed
+\n - newline
+\r - carriage return
+\t - tab
+\uxxxx - chars with 16-bit hex value xxxx
+\v - vertical tab
+\ooo - chars with octal value ooo
+\xhh - char with hex value hh
+''' vs """ - http://stackoverflow.com/questions/28511229/triple-single-quote-vs-triple-double-quote-in-ruby
+gets - get string input from user including line break
+gets.chomp - removes the \n at the end
+.to_i - method - converts to integer
+.to_f - method - converts to float
+ARGV - argument variable - this variable holds the arguments you pass to ruby script when you run it
+$stdin.gets.chomp - used instead of gets.chomp when ARGV is used
+ARGV.first - gets the first argument
+txt = open(filename) - opens a file and assigns a File object to txt variable
+txt.read = reads from file object and returns the contents as string
+txt.close - to close the file that was opened
+ri "File#open" - cmd line cmd to read about file open
+readline - reads only 1 line of text file
+truncate - empties the file
+seek - move the line-head of a file to a particular byte
+write('stuff') - writes string to file
+'w' - mode in which file is opened. others are 'r','a','r+','w+','a+'
+'hello'.length = returns length of the string
+File.exist?(filename) - to check if the file exists
+; - can be used to write code in one line
+  eg: def method; puts 'one line'; end
+functions/methods - names block of code, takes arguments and returns objects
+defining a method:
+  def methodname(arg)
+    ...code
+  end
+a += 1 - its short hand for a = a + 1
+return - used to explicitly to make methods return onjects  
