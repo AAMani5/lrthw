@@ -1,0 +1,98 @@
+ri "File#open" at the command line prompt outputs this:
+
+= File#open
+
+(from ruby core)
+=== Implementation from Kernel
+------------------------------------------------------------------------------
+  open(path [, mode [, perm]] [, opt])                -> io or nil
+  open(path [, mode [, perm]] [, opt]) {|io| block }  -> obj
+
+------------------------------------------------------------------------------
+
+Creates an IO object connected to the given stream, file, or subprocess.
+
+If path does not start with a pipe character (|), treat it as the name of a
+file to open using the specified mode (defaulting to "r").
+
+The mode is either a string or an integer.  If it is an integer, it must be
+bitwise-or of open(2) flags, such as File::RDWR or File::EXCL.  If it is a
+string, it is either "fmode", "fmode:ext_enc", or "fmode:ext_enc:int_enc".
+
+See the documentation of IO.new for full documentation of the mode string
+directives.
+
+If a file is being created, its initial permissions may be set using the perm
+parameter.  See File.new and the open(2) and chmod(2) man pages for a
+description of permissions.
+
+If a block is specified, it will be invoked with the IO object as a parameter,
+and the IO will be automatically closed when the block terminates.  The call
+returns the value of the block.
+
+If path starts with a pipe character ("|"), a subprocess is created, connected
+to the caller by a pair of pipes.  The returned IO object may be used to write
+to the standard input and read from the standard output of this subprocess.
+
+If the command following the pipe is a single minus sign ("|-"), Ruby forks,
+and this subprocess is connected to the parent.  If the command is not "-",
+the subprocess runs the command.
+
+When the subprocess is ruby (opened via "|-"), the open call returns nil.  If
+a block is associated with the open call, that block will run twice --- once
+in the parent and once in the child.
+
+The block parameter will be an IO object in the parent and nil in the child.
+The parent's IO object will be connected to the child's $stdin and $stdout.
+The subprocess will be terminated at the end of the block.
+
+=== Examples
+Reading from "testfile":
+
+  open("testfile") do |f|
+    print f.gets
+  end
+
+Produces:
+
+  This is line one
+
+Open a subprocess and read its output:
+
+  cmd = open("|date")
+  print cmd.gets
+  cmd.close
+
+Produces:
+
+  Wed Apr  9 08:56:31 CDT 2003
+
+Open a subprocess running the same Ruby program:
+
+  f = open("|-", "w+")
+  if f == nil
+    puts "in Child"
+    exit
+  else
+    puts "Got: #{f.gets}"
+  end
+
+Produces:
+
+  Got: in Child
+
+Open a subprocess using a block to receive the IO object:
+
+  open "|-" do |f|
+    if f then
+      # parent process
+      puts "Got: #{f.gets}"
+    else
+      # child process
+      puts "in Child"
+      end
+        end
+
+      Produces:
+
+        Got: in Child
