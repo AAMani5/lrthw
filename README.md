@@ -10,4 +10,7 @@ File structure :
       		├── ex1.rb  
       		└── ex2.rb
 
-To run the script use,type ruby filename at the prompt in its current folder
+To run the script use,type the following at the prompt in its current folder
+```shell
+ruby <filename>
+```
