@@ -1,5 +1,5 @@
 # demonstrates 3 kinds of interaction - implicit, override & alter - from inheritance
-
+# inheritance - Is-a relationship
 class Parent
 
   def override()
